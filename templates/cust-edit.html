@@ -1,0 +1,78 @@
+<form class="form-horizontal" name="userForm" id="edit-form">
+  <fieldset>
+
+    <!-- Form Name -->
+    <legend>add-customer</legend>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="textinput">Name</label>
+      <div class="col-md-4">
+        <input id="textinput" ng-model="custEditObj.name" name="name" type="text" placeholder="Name" class="form-control input-md" required="" ng-minlength=5 ng-maxlength=10>
+        <p ng-show="userForm.name.$error.minlength" class="help-block">Username is too short.</p>
+        <p ng-show="userForm.name.$error.maxlength" class="help-block">Username is too long.</p>
+      </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="textinput">Email</label>
+      <div class="col-md-4">
+        <input id="textinput" name="email" type="text" placeholder="Email" class="form-control input-md" ng-model="custEditObj.email" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/">
+        <span ng-show="userForm.email.$invalid" class="help-block">Email is not valid</span>
+      </div>
+    </div>
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="textinput">Mobile</label>
+      <div class="col-md-4">
+        <input id="textinput" ng-model="custEditObj.phone" name="phone" type="text" placeholder="Name" class="form-control input-md" ng-pattern="/^\d{0,10}(\.\d{1,9})?$/">
+        <span ng-show="userForm.phone.$invalid" class="help-block err">Phone number is not valid</span>
+      </div>
+    </div>
+    <!-- Password input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="password">Password</label>
+      <div class="col-md-4">
+        <input id="password" name="password" type="password" placeholder="Password" class="form-control input-md" required="" ng-model="custEditObj.password">
+        <span class="help-block"></span>
+      </div>
+    </div>
+    <!-- Multiple Radios (inline) -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="radios">Gender</label>
+      <div class="col-md-4">
+        <label class="radio-inline" for="radios-0">
+          <input type="radio" name="radios" id="radios-0" value="M" checked="checked" ng-model="custEditObj.gender" ng-required="!custEditObj.gender"> Male
+        </label>
+        <label class="radio-inline" for="radios-1">
+          <input type="radio" name="radios" id="radios-1" value="F" ng-model="custEditObj.gender" ng-required="!custEditObj.gender"> Female
+        </label>
+      </div>
+    </div>
+    <!-- Select Basic -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="selectbasic">State</label>
+      <div class="col-md-4">
+        <select id="selectbasic" name="selectstate" class="form-control" ng-model="custEditObj.state" required>
+          <option value="">***SELECT****</option>
+          <option value="AP">Andhrapradesh</option>
+          <option value="TG">Telangana</option>
+          <option value="KA">Karnataka</option>
+          <option value="TN">Tamilnadu</option>
+        </select>
+        <span ng-show="userForm.selectstate.$error.required" class="help-block">Select state</span>
+      </div>
+    </div>
+    <span class="help-block" ng-show="formErr">Somenthing wrong! Pleae try again.</span>
+
+
+    <!-- Button (Double) -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="button1id"></label>
+      <div class="col-md-8">
+        <button id="button1id" name="button1id" class="btn btn-success" ng-click="custEditFun({e:custEditObj});">Update</button>
+      </div>
+    </div>
+  </fieldset>
+</form>

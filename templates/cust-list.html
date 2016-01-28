@@ -1,0 +1,18 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Account number</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="customer in custListObj">
+      <td><a href="javascript:void(0);" ng-click="custShowFun({c:customer});">{{customer.ac}}</a></td>
+      <td>{{customer.name}}</td>
+      <td>{{customer.email}}</td>
+      <td><span ng-click="custEditFun({d:customer})" class="btn btn-xs btn-primary">Edit</span>&nbsp;<span class="btn btn-xs btn-info" ng-click="custDelFun({de:customer})">Remove</span></td>
+    </tr>
+  </tbody>
+</table>

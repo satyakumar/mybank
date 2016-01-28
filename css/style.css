@@ -1,0 +1,18 @@
+/* Styles go here */
+
+.help-block {
+  color: red;
+  padding: 5px;
+}
+
+.well-sm {
+  background: #A767FF;
+  color: #fff;
+  font-weight: bold;
+}
+
+.money-btn {
+  background: #24d686;
+  color: #fff;
+  font-weight: bold;
+}
