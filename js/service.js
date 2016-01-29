@@ -4,7 +4,13 @@ myBank.service('getCustList', ['$firebaseArray', function($firebaseArray) {
     //var ref = new Firebase("https://my-bank.firebaseio.com/customers");
     /****Getting all customers list***/
     //this.list = $firebaseArray(ref);
-    this.list = $firebaseArray(new Firebase("https://my-bank.firebaseio.com/customers"));
+    /*!!! this.list = $firebaseArray(new Firebase("https://my-bank.firebaseio.com/customers")); !! */
+    var users = $firebaseArray(new Firebase("https://my-bank.firebaseio.com/customers"));
+    // Getting particular record
+    this.getRec = function(id) {
+        return users.$getRecord(id);
+    }
+    this.list = users;
 }]);
 /*****Add customer service*****/
 myBank.service('addCust', ['$location', 'getCustList', function($location, getCustList) {
@@ -30,7 +36,7 @@ myBank.service('addCust', ['$location', 'getCustList', function($location, getCu
 myBank.service('editCust', ['$rootScope', '$location', 'getCustList', function($rootScope, $location, getCustList) {
     this.updateCust = function(user) {
         var id = user.$id;
-        var record = getCustList.list.$getRecord(id);
+        var record = getCustList.getRec(id);
         record.name = user.name;
         record.email = user.email.toLowerCase();
         record.gender = user.gender;
@@ -59,7 +65,7 @@ myBank.service('loginService', ['$location', 'getCustList', function($location, 
 /******Adding money to account*****/
 myBank.service('addMoney', ['getCustList', function(getCustList) {
     this.add = function(money, id, existMonery) {
-        var record = getCustList.list.$getRecord(id);
+        var record = getCustList.getRec(id);
         record.money = Number(money) + Number(existMonery);
         getCustList.list.$save(record).then(function(ref) {
             //console.log(ref.key, ' updated');
@@ -75,12 +81,15 @@ myBank.service('getCookie', ['$cookieStore', function($cookieStore) {
 myBank.service('transferMoney', ['$firebaseArray', function($firebaseArray) {
     var transferData = $firebaseArray(new Firebase("https://my-bank.firebaseio.com/money-transfer-requests"));
     this.transfer = function(money, fromAc, toAc) {
-        console.log(money, fromAc, toAc)
+        //console.log(money, fromAc, toAc)
         transferData.$add({
             fromAc: fromAc,
+            fromAcId: fromAc.$id,
             toAc: toAc,
+            toAcId: toAc.$id,
             money: money,
-            time: new Date(),
+            created: new Date().getTime(),
+            updated: 0,
             status: 0,
         }).then(function(ref) {
             var id = ref.key();
@@ -93,3 +102,32 @@ myBank.service('transferMoney', ['$firebaseArray', function($firebaseArray) {
 myBank.service('getFundTransReqService', ['$firebaseArray', function($firebaseArray) {
     this.transferRequests = $firebaseArray(new Firebase("https://my-bank.firebaseio.com/money-transfer-requests"));
 }]);
+/*********Accept/Deny Money Transfer Requests**********/
+myBank.service('fundTransActionService',['$firebaseArray','getFundTransReqService','getCustList',function($firebaseArray,getFundTransReqService,getCustList){
+    this.action = function(matchRec,action) {
+        var transRecord = getFundTransReqService.transferRequests.$getRecord(matchRec.$id);
+        transRecord.status = action;
+        transRecord.updated = new Date().getTime();
+        if(action === 1) {
+            var fromAcRec = getCustList.getRec(matchRec.fromAcId);
+            var toAcRec = getCustList.getRec(matchRec.toAcId);  
+            var toAddMoney = toAcRec.money + matchRec.money;
+            var fromDeductMoney = fromAcRec.money - matchRec.money;
+            fromAcRec.money = fromDeductMoney;
+            toAcRec.money = toAddMoney;
+            getCustList.list.$save(fromAcRec).then(function(ref) {
+               console.log('From ac has been updated'); 
+            });
+            getCustList.list.$save(toAcRec).then(function(ref) {
+               console.log('To ac has been updated'); 
+            });
+        }
+        getFundTransReqService.transferRequests.$save(transRecord).then(function(ref) {
+           console.log('Transfer record has been updated'); 
+        });
+        return true; 
+    }
+}]);
+/*********Getting user record based on the $id**************/
+//myBank.service('getUserRecService',['']);
+ 

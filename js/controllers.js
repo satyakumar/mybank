@@ -119,7 +119,7 @@ myBank.controller('custProfileCtrl', ['$scope', '$timeout', 'editCust', 'addMone
                 return false;
             }
             var transferStatus = transferMoney.transfer(money, custCookie, JSON.parse(toPayee));
-            console.log(transferStatus)
+            console.log(custCookie, JSON.parse(toPayee))
         }
         /*****Logout****/
     $scope.logout = function() {
@@ -147,9 +147,30 @@ myBank.controller('mngrDashboardCtrl', ['$scope', function($scope) {
 
 }]);
 /*******Fund Transfer request page controller********/
-myBank.controller('fundTransReqCtrl', ['$scope', 'getFundTransReqService', 'getCustList', function($scope, getFundTransReqService, getCustList) {
+myBank.controller('fundTransReqCtrl', ['$scope', 'getFundTransReqService', 'getCustList','fundTransActionService','$timeout', function($scope, getFundTransReqService, getCustList,fundTransActionService,$timeout) {
     $scope.requests = getFundTransReqService.transferRequests;
-    console.log($scope.requests)
+    $scope.showCustomer = function(acId,acType) {
+        $scope.ac = getCustList.getRec(acId);
+        $scope.type = acType;
+        $scope.acShow = true;
+    }
+    $scope.transAction = function(id,act) {
+        var matchedRecord = '';
+        $scope.requests.forEach(function(key) {
+            if(key.$id === id) {
+                matchedRecord = key;
+            }
+        });
+        var action = fundTransActionService.action(matchedRecord,act); // 1 Means for accept
+        if(action) {
+            if(act === 1) { $scope.acceptPay = true; }
+            else { $scope.denyPay = true; } 
+            $timeout(function() {
+                $scope.acceptPay = false;
+                $scope.denyPay = false;
+            }, 3000);
+        }
+    }
 }]);
 /******Logout controller**/
 myBank.controller('logOutCtrl', ['$scope', function($scope) {

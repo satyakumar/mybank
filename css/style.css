@@ -16,3 +16,20 @@
   color: #fff;
   font-weight: bold;
 }
+.no-pad{
+  padding-left:0px;
+  padding-right:0px;
+  margin: 20px;
+  text-transform: capitalize;
+}
+.capitalize {
+	text-transform: capitalize;
+}
+.accept {
+	background: #008B8B;
+	color: #E0FFFF;
+}
+.deny {
+	background: #DB7093;
+	color: #E0FFFF;
+}
