@@ -33,6 +33,13 @@ myBank.directive('custEdit', function() {
         }
     };
 });
+myBank.directive('custRegister', function() {
+    return {
+        restrict: 'E',
+        replace: false,
+        templateUrl: 'templates/cust-register-temp.html',
+    };
+});
 myBank.directive('loginTemp', function() {
     return {
         restrict: 'AE',

@@ -43,3 +43,22 @@
 .home-3 {
   background: #FFA500;
 }
+body {
+    background: #e0e0e0 url("../images/bodybg.gif") repeat-x scroll 0 0;
+    color: #505050;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+login-temp .row {
+    height: 210px;
+    margin: 0 auto 0 377px;
+    padding-top: 191px;
+    width: 810px;
+}
+.mngr-dashboard .panel{
+  background: #e0e0e0 url("../images/mngr-bg.jpg") repeat-y scroll 0 0;
+}
+.container {
+  margin-top: 140px;
+}

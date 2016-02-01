@@ -170,7 +170,19 @@ myBank.controller('fundTransReqCtrl', ['$scope', 'getFundTransReqService', 'getC
                 $scope.denyPay = false;
             }, 3000);
         }
+        $scope.acShow = false;
     }
+}]);
+/********Admin add customer controller*********/
+myBank.controller('addCustCrtl',['$scope',function($scope){
+    $scope.myForm = function(user) {
+        if (user.email === '' || user.gender === '' || user.name === '' || user.password === '' || user.password2 === '' || user.phone === "" || user.state === '' || user.email === undefined || user.gender === undefined || user.name === undefined || user.password === undefined || user.password2 === undefined || user.phone === undefined || user.state === undefined) {
+            $scope.formErr = true;
+            console.log('err');
+            return false;
+        }
+        addCust.insertCust(user);
+    };
 }]);
 /******Logout controller**/
 myBank.controller('logOutCtrl', ['$scope', function($scope) {

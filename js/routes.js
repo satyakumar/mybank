@@ -40,4 +40,8 @@
               templateUrl: 'templates/fund-transfer-requests.html',
               controller: 'fundTransReqCtrl'
           })
+          .when('/add-customer',{
+            templateUrl: 'templates/add-customer.html',
+            controller: 'addCustCrtl'
+          })
   });
