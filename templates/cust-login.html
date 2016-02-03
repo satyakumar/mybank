@@ -1,4 +1,12 @@
-<login-temp click-fun="custLogin(k);"></login-temp>
 <div ng-show="loginErr" class="alert alert-danger alert-dismissable page-alert">
    Login failed! Please use valid credentials.
+</div>
+<div class="row login">
+<login-temp click-fun="custLogin(k);" class="col-md-8 pull-right"></login-temp>
+<div class="col-md-4 right-side-nav">
+<ul class="list-group">
+  <li class="list-group-item"><a href="#/">Home</a></li>
+  <li class="list-group-item"><a href="#/cust-register">Register</a></li>
+</ul>
+</div>
 </div>

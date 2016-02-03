@@ -11,5 +11,16 @@
   <div ng-show="custEditShow">
     <cust-edit cust-edit-obj="customer" cust-edit-fun="updateForm(e);"></cust-edit>
   </div>
-  <cust-list cust-list-obj="custList" cust-show-fun="custShow(c)" cust-edit-fun="custEdit(d);" cust-del-fun="delCust(de)"></cust-list>
+  <!--<cust-list cust-list-obj="custList" cust-show-fun="custShow(c)" cust-edit-fun="custEdit(d);" cust-del-fun="delCust(de)"></cust-list>-->
+</div>
+<div class="row login">
+<cust-list cust-list-obj="custList" cust-show-fun="custShow(c)" cust-edit-fun="custEdit(d);" cust-del-fun="delCust(de)" class="col-md-8 pull-right"></cust-list>
+<div class="col-md-4 right-side-nav">
+<ul class="list-group">
+  <li class="list-group-item"><a href="#/manager-dashboard">Dashboard</a></li>
+  <li class="list-group-item"><a href="#/add-customer">Add a customer</a></li>
+  <li class="list-group-item"><a href="#/transfer-requests">Fund transfer requests</a></li>
+  <li class="list-group-item"><a href="#/logout">Logout</a></li>
+</ul>
+</div>
 </div>

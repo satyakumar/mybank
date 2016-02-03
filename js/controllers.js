@@ -1,19 +1,19 @@
 myBank.controller('homeCtrl', ['$scope', '$location', 'getCookie', function($scope, $location, getCookie) {
-    if (typeof(getCookie.profileCookie) === 'object') {
+    if (typeof(getCookie.profileCookie()) === 'object') {
         $location.path('/profile');
     }
 }]);
 myBank.controller('addCustCtrl', ['$scope', function($scope) {
 
 }]);
-myBank.controller('custRegCtrl', ['$scope', 'addCust', function($scope, addCust) {
-    $scope.myForm = function(user) {
+myBank.controller('custRegCtrl', ['$scope', 'addCust', function($scope, addCust) { 
+    $scope.myForm = function(user) { 
         if (user.email === '' || user.gender === '' || user.name === '' || user.password === '' || user.password2 === '' || user.phone === "" || user.state === '' || user.email === undefined || user.gender === undefined || user.name === undefined || user.password === undefined || user.password2 === undefined || user.phone === undefined || user.state === undefined) {
             $scope.formErr = true;
             console.log('err');
             return false;
         }
-        addCust.insertCust(user);
+		addCust.insertCust(user);
     };
 }]);
 myBank.controller('custLoginCtrl', ['$scope', '$timeout', '$location', '$cookieStore', 'loginService', function($scope, $timeout, $location, $cookieStore, loginService) {
@@ -75,8 +75,10 @@ myBank.controller('custListCtrl', ['$scope', '$location', '$timeout', 'getCustLi
 }]);
 /****Customer profile controller**/
 myBank.controller('custProfileCtrl', ['$scope', '$timeout', 'editCust', 'addMoney', 'getCookie', '$cookieStore', '$location', 'getCustList', 'transferMoney', function($scope, $timeout, editCust, addMoney, getCookie, $cookieStore, $location, getCustList, transferMoney) {
+	//window.location.reload() // Reloading page
     $scope.proflEdit = false;
-    var custCookie = getCookie.profileCookie;
+    var custCookie = getCookie.profileCookie();
+	console.log(custCookie)
     if (typeof(custCookie) === 'object') {
         $scope.customer = custCookie;
     } else {
@@ -100,26 +102,34 @@ myBank.controller('custProfileCtrl', ['$scope', '$timeout', 'editCust', 'addMone
     };
     /****Adding money*****/
     $scope.addMoneyShow = function() {
-        $scope.showMoney = true;
+        $scope.showMoney = $scope.fundHideBtnMoney = true;
     };
     $scope.addMoney = function(money) {
         var result = addMoney.add(money, custCookie.$id, custCookie.money);
         $scope.customer.money = result;
-        $scope.showMoney = false;
+        $scope.showMoney = $scope.fundHideBtnMoney = false;
         $scope.money = '';
     };
+	/****Hide buttons***/
+	$scope.hideTrans = function() {
+		$scope.showTransfer = $scope.fundHideBtn = false;
+	}
+	$scope.hideAddMoney = function() {
+		$scope.showMoney = $scope.fundHideBtnMoney = false;
+	}
     /***Transfer money*****/
     $scope.transferMoneyShow = function() {
-        $scope.showTransfer = true;
+        $scope.showTransfer = $scope.fundHideBtn = true;
         $scope.custList = getCustList.list;
     }
-    $scope.transfer = function(money, toPayee) {
+	$scope.transfer = function(money, toPayee) {
             if (money > custCookie.money || typeof toPayee === 'undefined') {
                 $scope.err = true;
                 return false;
             }
             var transferStatus = transferMoney.transfer(money, custCookie, JSON.parse(toPayee));
-            console.log(custCookie, JSON.parse(toPayee))
+            //console.log(custCookie, JSON.parse(toPayee));
+			$scope.showTransfer = $scope.fundHideBtn = false;
         }
         /*****Logout****/
     $scope.logout = function() {
@@ -130,7 +140,7 @@ myBank.controller('custProfileCtrl', ['$scope', '$timeout', 'editCust', 'addMone
 /*******Manager login controller********/
 myBank.controller('mngrLoginCtrl', ['$scope', '$timeout', '$location', function($scope, $timeout, $location) {
     $scope.login = function(mngr) {
-        if (mngr.email === 'mybank@mybank.com' && mngr.password === 'mybank') {
+        if (mngr.email === 'admin@mybank.com' && mngr.password === 'admin123') {
             $location.path('/manager-dashboard');
         } else {
             $scope.loginErr = true;

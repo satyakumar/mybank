@@ -28,7 +28,12 @@ myBank.service('addCust', ['$location', 'getCustList', function($location, getCu
             var id = ref.key();
             console.log("added record with id " + id);
             getCustList.list.$indexFor(id); // returns location in the array
-            $location.path('/cust-login');
+			if(window.location.hash === '#/cust-register') {
+				$location.path('/cust-login');	
+			} else if (window.location.hash === '#/add-customer') {
+				$location.path('/customers');
+			}
+            
         });
     };
 }]);
@@ -75,7 +80,10 @@ myBank.service('addMoney', ['getCustList', function(getCustList) {
 }]);
 /****Get user cookie****/
 myBank.service('getCookie', ['$cookieStore', function($cookieStore) {
-    this.profileCookie = $cookieStore.get('customer');
+    //this.profileCookie = $cookieStore.get('customer');
+	this.profileCookie = function() {
+		return $cookieStore.get('customer');	
+	}
 }]);
 /****Send money transfer request to manager******/
 myBank.service('transferMoney', ['$firebaseArray', function($firebaseArray) {

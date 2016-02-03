@@ -62,3 +62,27 @@ login-temp .row {
 .container {
   margin-top: 140px;
 }
+.right-side-nav {
+	margin-top: 51px;	
+}
+.right-side-nav li{
+	background: url("../images/navbg.jpg") repeat-y scroll 0 0;	
+	background-clip: content-box;
+    background-size: cover;
+	font-weight: bold;
+}
+.right-side-nav ul {
+	border-style: dotted;
+	border-color: #FFF;
+} 
+.login {
+	padding: 108px 0 0
+}
+a {
+	color: #2E4053;
+}
+a:hover {
+	color: #0E6655;
+	text-decoration: none;
+}
+

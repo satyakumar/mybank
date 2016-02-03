@@ -2,7 +2,7 @@
     <fieldset>
 
         <!-- Form Name -->
-        <legend>add-customer</legend>
+        <legend>Register Customer</legend>
 
         <!-- Text input-->
         <div class="form-group">
@@ -50,7 +50,7 @@
         <!-- Multiple Radios (inline) -->
         <div class="form-group">
             <label class="col-md-4 control-label" for="radios">Gender</label>
-            <div class="col-md-4">
+            <div class="col-md-4 text-left">
                 <label class="radio-inline" for="radios-0">
                     <input type="radio" name="radios" id="radios-0" value="M" checked="checked" ng-model="user.gender" ng-required="!user.gender"> Male
                 </label>
@@ -64,13 +64,13 @@
             <label class="col-md-4 control-label" for="selectbasic">State</label>
             <div class="col-md-4">
                 <select id="selectbasic" name="selectstate" class="form-control" ng-model="user.state" required>
-                    <option value="">***SELECT****</option>
+                    <option value="" selected>***SELECT****</option>
                     <option value="AP">Andhrapradesh</option>
                     <option value="TG">Telangana</option>
                     <option value="KA">Karnataka</option>
                     <option value="TN">Tamilnadu</option>
                 </select>
-                <span ng-show="userForm.selectstate.$error.required" class="help-block">Select state</span>
+                <span ng-show="user.state == "" && userForm.selectstate.$error.required" class="help-block">Select state</span>
             </div>
         </div>
         <span class="help-block" ng-show="formErr">Somenthing wrong! Pleae try again.</span>
@@ -79,7 +79,7 @@
         <!-- Button (Double) -->
         <div class="form-group">
             <label class="col-md-4 control-label" for="button1id"></label>
-            <div class="col-md-8">
+            <div class="col-md-8 text-left">
                 <button id="button1id" name="button1id" class="btn btn-success" ng-click="myForm(user);">Create</button>
                 <button id="button2id" name="button2id" class="btn btn-danger">Cancel</button>
             </div>
