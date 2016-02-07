@@ -39,7 +39,7 @@ myBank.controller('custListCtrl', ['$scope', '$location', '$timeout', 'getCustLi
     /****Showing a single customer***/
     $scope.custShow = function(customer) {
         $scope.customer = customer;
-        $scope.showCustomer = true;
+        $scope.showCustomer = $scope.acShow = true;
     };
     /****Hiding a customer card***/
     $scope.hide = function() {
@@ -161,9 +161,12 @@ myBank.controller('fundTransReqCtrl', ['$scope', 'getFundTransReqService', 'getC
     $scope.requests = getFundTransReqService.transferRequests;
     $scope.showCustomer = function(acId,acType) {
         $scope.ac = getCustList.getRec(acId);
-        $scope.type = acType;
+        //$scope.type = acType;
         $scope.acShow = true;
     }
+	$scope.hide = function() {
+		$scope.acShow = false;
+	}
     $scope.transAction = function(id,act) {
         var matchedRecord = '';
         $scope.requests.forEach(function(key) {
@@ -184,7 +187,7 @@ myBank.controller('fundTransReqCtrl', ['$scope', 'getFundTransReqService', 'getC
     }
 }]);
 /********Admin add customer controller*********/
-myBank.controller('addCustCrtl',['$scope',function($scope){
+myBank.controller('addCustCrtl',['$scope','addCust',function($scope,addCust){
     $scope.myForm = function(user) {
         if (user.email === '' || user.gender === '' || user.name === '' || user.password === '' || user.password2 === '' || user.phone === "" || user.state === '' || user.email === undefined || user.gender === undefined || user.name === undefined || user.password === undefined || user.password2 === undefined || user.phone === undefined || user.state === undefined) {
             $scope.formErr = true;

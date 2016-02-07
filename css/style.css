@@ -44,8 +44,8 @@
   background: #FFA500;
 }
 body {
-    background: #e0e0e0 url("../images/bodybg.gif") repeat-x scroll 0 0;
-    color: #505050;
+    background: #e0e0e0 url("../images/wood_background_texture_36573_2560x1600.jpg") repeat-x scroll 0 0;
+    color: #FFF;
     margin: 0;
     padding: 0;
     text-align: center;
@@ -59,9 +59,9 @@ login-temp .row {
 .mngr-dashboard .panel{
   background: #e0e0e0 url("../images/mngr-bg.jpg") repeat-y scroll 0 0;
 }
-.container {
+/*.container {
   margin-top: 140px;
-}
+}*/
 .right-side-nav {
 	margin-top: 51px;	
 }
@@ -78,11 +78,23 @@ login-temp .row {
 .login {
 	padding: 108px 0 0
 }
-a {
-	color: #2E4053;
+a,.no-pad a, profile-card a {
+	color:  #4a235a;
 }
 a:hover {
 	color: #0E6655;
 	text-decoration: none;
 }
-
+cust-list a {
+	background: #FFF;
+}
+.no-pad , profile-card {
+	color:  #1b2631;
+}
+.pad  {
+	color: #0E6655;
+	font-weight: bold;
+} 
+.contact-1 {
+	color: #1b2631;
+}

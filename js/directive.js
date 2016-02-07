@@ -50,3 +50,14 @@ myBank.directive('loginTemp', function() {
         }
     };
 });
+myBank.directive('profileCard',function(){
+	return {
+		restrict: 'E',
+		replace: false,
+		templateUrl: 'templates/cust-profile-card-temp.html',
+		scope: {
+			account: '=',
+			hide: '&',
+		}
+	}
+});

@@ -1,70 +1,15 @@
 <div ng-show="acceptPay" class="alert alert-success">Money transfer has been done !</div>
 <div ng-show="denyPay" class="alert alert-danger">Money transfer has been denied !</div>
+<profile-card account="ac" ng-show="acShow" hide="hide();"></profile-card>
 <div class="col-md-3 no-pad" ng-repeat="req in requests" ng-if="req.status === 0">
     <ul class="list-group">
         <li class="list-group-item info">From Ac:- </li>
-        <li class="list-group-item text-center"><a href="" ng-click="showCustomer(req.fromAcId,'from')">{{req.fromAc.name}}</a></li>
+        <li class="list-group-item text-center"><a href="" ng-click="showCustomer(req.fromAcId,'from')" class="pad">{{req.fromAc.name}}</a></li>
         <li class="list-group-item info">To Ac:- </li>
-        <li class="list-group-item text-center"><a href="" ng-click="showCustomer(req.toAcId,'to')">{{req.toAc.name}}</a></li>
+        <li class="list-group-item text-center"><a href="" ng-click="showCustomer(req.toAcId,'to')" class="pad">{{req.toAc.name}}</a></li>
         <li class="list-group-item success">Money to transfer </li>
         <li class="list-group-item text-center">{{req.money}}</li>
         <li class="list-group-item text-center"><a href="" class="btn accept" ng-click="transAction(req.$id,1);">Accept</a>
                     <a href="" class="btn deny" ng-click="transAction(req.$id,-1);">Deny</a></li>
     </ul>
-</div>
-<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" ng-show="acShow">
-    <h2 class="alert-success capitalize">{{type}} Account Details</h2>
-    <div class="panel panel-info">
-        <div class="panel-heading">
-            <h3 class="panel-title capitalize">{{ac.name}}</h3>
-        </div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" class="img-circle img-responsive"> </div>
-                <div class=" col-md-9 col-lg-9 ">
-                    <table class="table table-user-information">
-                        <tbody>
-                            <tr>
-                                <td>Acccount Number:</td>
-                                <td>{{ac.ac}}</td>
-                            </tr>
-                            <tr>
-                                <td>Phone number</td>
-                                <td>{{ac.phone}}</td>
-                            </tr>
-                            <tr>
-                                    <td>Email</td>
-                                    <td><a href="mailto:info@support.com">{{ac.email}}</a></td>
-                                </tr>
-                                
-                            <tr>
-                                <tr>
-                                    <td>Gender</td>
-                                    <td>{{ac.gender}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Stage</td>
-                                    <td>{{ac.state}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Available Money</td>
-                                    <td>{{ac.money}}</td>
-                                </tr>
-
-                            </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="panel-footer">
-            <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
-            <span class="pull-right">
-                            <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
-                            <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                        </span>
-        </div>
-
-    </div>
 </div>
