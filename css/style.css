@@ -1,8 +1,9 @@
 /* Styles go here */
 
 .help-block {
-  color: red;
-  padding: 5px;
+	color: #76D7C4;
+	padding: 5px;
+	font-weight: bold;
 }
 
 .well-sm {
@@ -97,4 +98,7 @@ cust-list a {
 } 
 .contact-1 {
 	color: #1b2631;
+}
+legend , .white{
+	color: #FFF;
 }
