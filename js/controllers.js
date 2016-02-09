@@ -39,17 +39,18 @@ myBank.controller('custListCtrl', ['$scope', '$location', '$timeout', 'getCustLi
     /****Showing a single customer***/
     $scope.custShow = function(customer) {
         $scope.customer = customer;
-        $scope.showCustomer = $scope.acShow = true;
+        $scope.acShow = true;
+		$scope.custEditShow = false;
     };
     /****Hiding a customer card***/
-    $scope.hide = function() {
-        $scope.showCustomer = false;
-    };
+	$scope.hide = function() {
+		$scope.acShow = false;
+	}
     /****Edit form of a customer***/
     $scope.custEdit = function(customer) {
         //$location.hash('edit-form');
         $scope.custEditShow = true;
-        $scope.showCustomer = false;
+        $scope.acShow = false;
         $scope.id = customer.$id;
         $scope.customer = customer;
     };
@@ -174,7 +175,7 @@ myBank.controller('fundTransReqCtrl', ['$scope', 'getFundTransReqService', 'getC
                 matchedRecord = key;
             }
         });
-        var action = fundTransActionService.action(matchedRecord,act); // 1 Means for accept
+		var action = fundTransActionService.action(matchedRecord,act); // 1 Means for accept
         if(action) {
             if(act === 1) { $scope.acceptPay = true; }
             else { $scope.denyPay = true; } 

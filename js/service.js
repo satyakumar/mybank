@@ -118,7 +118,7 @@ myBank.service('fundTransActionService',['$firebaseArray','getFundTransReqServic
         transRecord.updated = new Date().getTime();
         if(action === 1) {
             var fromAcRec = getCustList.getRec(matchRec.fromAcId);
-            var toAcRec = getCustList.getRec(matchRec.toAcId);  
+            var toAcRec = getCustList.getRec(matchRec.toAcId);   
             var toAddMoney = toAcRec.money + matchRec.money;
             var fromDeductMoney = fromAcRec.money - matchRec.money;
             fromAcRec.money = fromDeductMoney;
