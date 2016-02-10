@@ -1,24 +1,24 @@
 <div class="alert alert-info alert-dismissable page-alert" ng-show="updateAlert">
-  Customer profile has been updated!
+    Customer profile has been updated!
 </div>
 <div class="alert alert-danger alert-dismissable page-alert" ng-show="deleteAlert">
-  Customer profile has been removed!
+    Customer profile has been removed!
 </div>
 <div>
-  <div ng-show="custEditShow">
-    <cust-edit cust-edit-obj="customer" cust-edit-fun="updateForm(e);"></cust-edit>
-  </div>
-  <!--<cust-list cust-list-obj="custList" cust-show-fun="custShow(c)" cust-edit-fun="custEdit(d);" cust-del-fun="delCust(de)"></cust-list>-->
+    <div ng-show="custEditShow">
+        <cust-edit cust-edit-obj="customer" cust-edit-fun="updateForm(e);"></cust-edit>
+    </div>
+    <!--<cust-list cust-list-obj="custList" cust-show-fun="custShow(c)" cust-edit-fun="custEdit(d);" cust-del-fun="delCust(de)"></cust-list>-->
 </div>
 <profile-card account="customer" ng-show="acShow" hide="hide();"></profile-card>
 <div class="row login">
-<cust-list cust-list-obj="custList" cust-show-fun="custShow(c)" cust-edit-fun="custEdit(d);" cust-del-fun="delCust(de)" class="col-md-8 pull-right"></cust-list>
-<div class="col-md-4 right-side-nav">
-<ul class="list-group">
-  <li class="list-group-item"><a href="#/manager-dashboard">Dashboard</a></li>
-  <li class="list-group-item"><a href="#/add-customer">Add a customer</a></li>
-  <li class="list-group-item"><a href="#/transfer-requests">Fund transfer requests</a></li>
-  <li class="list-group-item"><a href="#/logout">Logout</a></li>
-</ul>
-</div>
+    <cust-list cust-list-obj="custList" cust-show-fun="custShow(c)" cust-edit-fun="custEdit(d);" cust-del-fun="delCust(de)" class="col-md-8 pull-right"></cust-list>
+    <div class="col-md-4 right-side-nav">
+        <ul class="list-group">
+            <li class="list-group-item"><a href="/manager-dashboard">Dashboard</a></li>
+            <li class="list-group-item"><a href="/add-customer">Add a customer</a></li>
+            <li class="list-group-item"><a href="/transfer-requests">Fund transfer requests</a></li>
+            <li class="list-group-item"><a href="/logout">Logout</a></li>
+        </ul>
+    </div>
 </div>
