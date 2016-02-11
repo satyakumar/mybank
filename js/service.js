@@ -28,9 +28,9 @@ myBank.service('addCust', ['$location', 'getCustList', function($location, getCu
             var id = ref.key();
             console.log("added record with id " + id);
             getCustList.list.$indexFor(id); // returns location in the array
-			if(window.location.hash === '#/cust-register') {
+			if(window.location.pathname === '/cust-register') {
 				$location.path('/cust-login');	
-			} else if (window.location.hash === '#/add-customer') {
+			} else if (window.location.pathname === '/add-customer') {
 				$location.path('/customers');
 			}
             
