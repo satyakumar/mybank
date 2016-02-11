@@ -1,5 +1,4 @@
-  myBank.config(function($routeProvider, $locationProvider) {
-      $locationProvider.html5Mode(true);
+  myBank.config(function($routeProvider) {
       $routeProvider
           .when('/', {
               templateUrl: 'templates/home.html',
@@ -41,8 +40,8 @@
               templateUrl: 'templates/fund-transfer-requests.html',
               controller: 'fundTransReqCtrl'
           })
-          .when('/add-customer', {
-              templateUrl: 'templates/add-customer.html',
-              controller: 'addCustCrtl'
+          .when('/add-customer',{
+            templateUrl: 'templates/add-customer.html',
+            controller: 'addCustCrtl'
           })
   });
